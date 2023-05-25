@@ -3,6 +3,9 @@ from tkinter import *
 class Converter:
 
 	def __init__(self):
+		
+		button_font = ("Arial", "12", "bold")
+		button_fg = "#FFFFFF"
 
 		# Set up GUI frame
 		self.temp_frame = Frame()
@@ -40,7 +43,17 @@ class Converter:
 
 		self.to_celcius_button = Button(self.button_frame,
 																	 text="To Degrees C",
-																	 )
+																	 bg="#FF66FF",
+																	 fg=button_fg, 
+																	 font=button_font, width=12)
+		self.to_celcius_button.grid(row=0, column=0, padx=5, pady=5)
+
+		self.to_farenheit_button = Button(self.button_frame,
+																	 text="To Farenheit",
+																	 bg="#FF66B3",
+																	 fg=button_fg, 
+																	 font=button_font, width=12)
+		self.to_farenheit_button.grid(row=0, column=1, padx=5, pady=5)
 # Main Routine
 if __name__ == "__main__":
 	root = Tk()
