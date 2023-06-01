@@ -32,7 +32,7 @@ class Converter:
 		self.temp_entry.grid(row=2, padx=10, pady=10)
 
 		error = "Please enter a valid number"
-		self.temp_error = Label(self.temp_frame, text=error, fg="#9C0000")
+		self.temp_error = Label(self.temp_frame, text="", fg="#9C0000")
 		self.temp_error.grid(row=3)
 
 		self.button_frame = Frame(self.temp_frame)
@@ -43,7 +43,8 @@ class Converter:
 		                                bg="#FF66FF",
 		                                fg=button_fg,
 		                                font=button_font,
-		                                width=12)
+		                                width=12,
+		                                command=self.to_celsius)
 		self.to_celcius_button.grid(row=0, column=0, padx=5, pady=5)
 
 		self.to_farenheit_button = Button(self.button_frame,
@@ -71,7 +72,26 @@ class Converter:
 		                                state=DISABLED)
 		self.to_history_button.grid(row=1, column=1, padx=5, pady=5)
 
+	def check_temp(self, min_value):
+		error = "Please enter a number that is more " \
+  "than {}".format(min_value)
 
+		try:
+			response = self.temp_entry.get()
+			response = float(response)
+			
+			if response < min_value:
+				self.temp_error.config(text=error)
+
+			else:
+				return response
+
+		except ValueError:
+			self.temp_error.config(text=error)
+		
+	def to_celsius(self):
+		self.check_temp(-459)
+		
 # Main Routine
 if __name__ == "__main__":
 	root = Tk()
